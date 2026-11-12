@@ -1,0 +1,31 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - '4000:4000'
+    environment:
+      WEB_ORIGIN: http://localhost:3000
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      SEED_DEMO: 'true'
+    volumes:
+      - api-data:/app/data
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:4000/api/health']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  web:
+    build:
+      context: ./web
+      args:
+        # The browser calls the API directly, so this is the host-visible URL.
+        NEXT_PUBLIC_API_URL: http://localhost:4000/api
+    ports:
+      - '3000:3000'
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  api-data:
