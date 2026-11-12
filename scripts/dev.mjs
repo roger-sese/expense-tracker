@@ -8,7 +8,9 @@ const apps = [
 ];
 
 const children = apps.map(({ name, color, args }) => {
-  const child = spawn(npm, args, { env: process.env, shell: process.platform === 'win32' });
+  const isWindows = process.platform === 'win32';
+  // detached => own process group, so we can stop the whole tree (npm -> nest/next -> node).
+  const child = spawn(npm, args, { env: process.env, shell: isWindows, detached: !isWindows });
   const prefix = `${color}[${name}]\x1b[0m `;
   const pipe = (stream, out) =>
     stream.on('data', (chunk) =>
@@ -27,7 +29,14 @@ let stopping = false;
 function shutdown(code) {
   if (stopping) return;
   stopping = true;
-  children.forEach((c) => c.kill('SIGTERM'));
+  children.forEach((c) => {
+    try {
+      if (process.platform === 'win32') c.kill('SIGTERM');
+      else process.kill(-c.pid, 'SIGTERM');
+    } catch {
+      // already exited
+    }
+  });
   process.exit(code);
 }
 process.on('SIGINT', () => shutdown(0));
