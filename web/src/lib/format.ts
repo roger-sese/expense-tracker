@@ -1,4 +1,4 @@
-const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+const currency = new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' });
 
 export const formatMoney = (amount: number): string => currency.format(amount);
 

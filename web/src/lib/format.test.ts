@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { formatDate, formatMoney, formatMonth, percentChange, todayIso } from './format';
 
 describe('format helpers', () => {
-  it('formats money as USD', () => {
-    expect(formatMoney(1234.5)).toBe('$1,234.50');
+  it('formats money as Philippine pesos', () => {
+    expect(formatMoney(1234.5)).toBe('₱1,234.50');
   });
 
   it('formats ISO dates without shifting the day across timezones', () => {

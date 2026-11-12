@@ -55,7 +55,7 @@ export function ExpenseForm({ categories, initial, submitLabel, onSubmit, cancel
       {serverError && <Alert>{serverError}</Alert>}
       <TextField label="Description" placeholder="e.g. Groceries" maxLength={120} {...bind('description')} />
       <div className="form__row">
-        <TextField label="Amount (USD)" type="number" inputMode="decimal" min="0" step="0.01" {...bind('amount')} />
+        <TextField label="Amount (₱)" type="number" inputMode="decimal" min="0" step="0.01" {...bind('amount')} />
         <TextField label="Date" type="date" {...bind('date')} />
       </div>
       <SelectField label="Category" {...bind('categoryId')}>

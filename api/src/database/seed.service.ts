@@ -46,16 +46,16 @@ export class SeedService implements OnApplicationBootstrap {
       return d.toISOString().slice(0, 10);
     };
     const samples: Array<[string, number, string, number]> = [
-      ['Groceries', 8450, 'Food', 1],
-      ['Coffee with team', 1275, 'Food', 2],
-      ['Monthly train pass', 12000, 'Transport', 3],
-      ['Electricity bill', 9530, 'Bills', 5],
-      ['Movie night', 2400, 'Entertainment', 6],
-      ['Taxi to airport', 4300, 'Transport', 9],
-      ['Internet', 5999, 'Bills', 12],
-      ['Birthday gift', 3500, 'Other', 15],
-      ['Lunch', 1580, 'Food', 35],
-      ['Concert tickets', 11000, 'Entertainment', 40],
+      ['Groceries', 245000, 'Food', 1],
+      ['Coffee with team', 38000, 'Food', 2],
+      ['Monthly train pass', 150000, 'Transport', 3],
+      ['Electricity bill', 325000, 'Bills', 5],
+      ['Movie night', 65000, 'Entertainment', 6],
+      ['Taxi to airport', 48000, 'Transport', 9],
+      ['Internet', 169900, 'Bills', 12],
+      ['Birthday gift', 120000, 'Other', 15],
+      ['Lunch', 25000, 'Food', 35],
+      ['Concert tickets', 450000, 'Entertainment', 40],
     ];
     await this.expenses.save(
       samples.map(([description, amountCents, cat, ago]) =>

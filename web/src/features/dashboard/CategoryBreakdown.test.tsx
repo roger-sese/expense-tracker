@@ -14,6 +14,6 @@ describe('CategoryBreakdown', () => {
       />,
     );
     expect(screen.getByRole('meter', { name: 'Bills' })).toHaveAttribute('aria-valuenow', '75');
-    expect(screen.getByText('$50.00 · 25%')).toBeInTheDocument();
+    expect(screen.getByText('₱50.00 · 25%')).toBeInTheDocument();
   });
 });

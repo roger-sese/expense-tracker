@@ -24,7 +24,7 @@ describe('ExpenseForm', () => {
     const onSubmit = vi.fn().mockResolvedValue(undefined);
     render(<ExpenseForm categories={categories} submitLabel="Save expense" onSubmit={onSubmit} />);
     await userEvent.type(screen.getByLabelText('Description'), 'Pizza');
-    await userEvent.type(screen.getByLabelText('Amount (USD)'), '18.25');
+    await userEvent.type(screen.getByLabelText('Amount (₱)'), '18.25');
     await userEvent.selectOptions(screen.getByLabelText('Category'), '1');
     await userEvent.click(screen.getByRole('button', { name: 'Save expense' }));
     expect(onSubmit).toHaveBeenCalledWith(
@@ -45,7 +45,7 @@ describe('ExpenseForm', () => {
     render(<ExpenseForm categories={categories} initial={expense} submitLabel="Save changes" onSubmit={onSubmit} />);
 
     expect(screen.getByLabelText('Description')).toHaveValue('Electricity');
-    expect(screen.getByLabelText('Amount (USD)')).toHaveValue(95.3);
+    expect(screen.getByLabelText('Amount (₱)')).toHaveValue(95.3);
     expect(screen.getByLabelText('Category')).toHaveValue('2');
 
     await userEvent.click(screen.getByRole('button', { name: 'Save changes' }));
